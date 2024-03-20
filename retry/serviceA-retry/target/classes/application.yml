@@ -1,0 +1,25 @@
+server:
+  port: 9090
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  retry:
+    instances:
+      serviceA:
+        registerHealthIndicator: true
+        maxRetryAttempts: 5
+        waitDuration: 10s
+
+
+
